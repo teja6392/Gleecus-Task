@@ -13,17 +13,17 @@ code {
 }
 
 
+/* Nav BAR-1 Styles */
 #container{
   width: 100%;
   height: 100%;
-  background-color: antiquewhite;
+  background-color: whitesmoke;
   padding: 10px 0px;
   display: block;
   float: left;
 }
 
-ul{
-  
+ul{ 
   list-style-type: none;
   padding: 5px 0px;
   text-align: center;
@@ -48,6 +48,7 @@ li{
 #colorLi{
   color: blue;
 }
+
 #logo1{
   width:180px;
   height:90px;
@@ -63,4 +64,9 @@ select{
 
 #navright{
   float: right;
+  margin-top: 20px;
+}
+
+#afterNav{
+  padding-left: 20px;
 }
