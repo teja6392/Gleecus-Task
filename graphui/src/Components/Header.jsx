@@ -18,6 +18,12 @@ const Header = () => {
     let X = []
     //To Store y values of graph
     let Y = []
+    if (APIdata) {
+        for (var a in APIdata) {
+            X.push(APIdata[a].counts)
+            Y.push(APIdata[a].CLINICIAN_NAME)
+        }
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -87,26 +93,19 @@ const Header = () => {
             {/* Third part Cards*/}
             <Grid container m={2}>
                 {/* Let's Intialize x and y values before developing graph */}
-                {APIdata && APIdata.map((user) =>{
-                    X.push(user.CLINICIAN_NAME)
+                {X && Y.map((x) => {
+                    console.log(x)
                 })}
-                {console.log("X",X)}
-                <CardContent
-                    sx={{ border: "1px solid white", width: "48%", marginRight: "20px", backgroundColor: "snow" }}
-                >
-                    {APIdata ? <Plot
-                        data={[
-                            {
-                                x: [1, 2, 3],
-                                y: [2, 6, 3],
-                                type: "bar",
-                                orientation: 'h'
-                            }
-                        ]}
-                        layout={{ width: "80%", height: "80%", title: "Histogram" }}
+                {APIdata ? <Plot
+                    id="plot" style={{ width: "48%" }}
+                    data={[{ x: X, y: Y, type: "bar", orientation: 'h', autosize: "false" }]}
+                    layout={{
+                        width: 700, height: 800, title: "Histogram",
+                        margin: { l: 150 }
+                    }}
 
-                    /> : ""}
-                    {/* <Typography variant="h5" component="div">
+                /> : ""}
+                {/* <Typography variant="h5" component="div">
                         benevolent
                     </Typography>
                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
@@ -118,10 +117,9 @@ const Header = () => {
                         {'"a benevolent smile"'}
                     </Typography> */}
 
-                </CardContent>
 
                 <CardContent
-                    sx={{ border: "1px solid white", width: "48%", marginRight: "20px", backgroundColor: "snow" }}
+                    sx={{ border: "1px solid white", width: "48%", marginRight: "10px", backgroundColor: "black", marginLeft: "10px" }}
                 >
                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                         Word of the Day
