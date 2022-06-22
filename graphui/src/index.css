@@ -56,14 +56,113 @@ li{
 #logo{
   width: 100px;
   height: 50px;
+  margin-left:200px;
+  box-sizing: border-box;
 }
+
 select{
   border: none;
   padding-right: 10px;
 }
 
 #navright{
-  float: right;
-  margin-top: 20px;
+  margin:20px 0px 0px 30px;
 }
+
+#secondPart{
+  padding:5px 0px 10px 30px;
+  box-sizing: border-box;
+}
+
+#cards{
+  width:100%;
+  padding-left:30px;
+  box-sizing:border-box;
+}
+#card1{
+  width:48%;
+  background-color: snow;
+  border: 1px solid white;
+}
+#card2{
+  width:48%;
+  background-color: snow;
+  border: 1px solid white;
+  position:relative;
+  margin-left:5px;  
+}
+#card2Margin{
+  margin-top:150px;
+}
+.date1{
+  width: 49% ;
+  background-color: aliceblue ;
+  margin-right: 2px;
+  margin-left:2px
+}
+.card2subcards{
+  border:1px solid black;
+}
+#graph{ 
+  float: right;
+   padding: 5px;
+  }
+
+  @media screen and (max-width: 376px){
+    #container,#nav,ul,select{
+      width: 100%;
+      float: none;
+      margin:0px 0px;
+      text-align: center;
+    }
+    li{
+      width:95%;
+      text-align: center;
+    }
+    
+    #navright{
+      width: 30%;
+      float: left;
+      margin-left:10px
+    }
+    #logo{
+      margin-left: 30px;
+    }
+    #cards{
+      width:100%;
+      height:900px;
+      padding: 0px;
+    }
+    #card1{
+      width:70% !important;
+      margin:0px !important;
+      padding:0px
+    }
+    #card2{
+      width:70%;
+      padding: 0px;
+    }
+    #card2Margin{
+      margin-top: 10px !important;
+    }
+    .card2Text{
+      margin: 0px !important;
+      padding: 0px;
+    }
+    .card2subcards{
+      margin : 0px !important;
+      padding: 0px !important;
+    }
+    .date1{
+      float:left;
+      width: 80%;
+      margin: 0px;
+      padding: 0px;
+      margin-bottom:8px;
+    }
+  }
+
+  
+
+
 

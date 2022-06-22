@@ -16,6 +16,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import TextField from '@mui/material/TextField'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 const Header = () => {
     let [APIdata, setData] = useState(null)
@@ -61,16 +62,7 @@ const Header = () => {
                         </select>
                     </li>
                     <li id='navright'>
-                        <Grid container>
-                            <InputLabel id="demo-simple-select-helper-label">
-                                <AccountCircleIcon color="action" fontSize='large' />
-                            </InputLabel>
-                            <NativeSelect defaultValue={0}>
-                                <option value={0}></option>
-                                <option value={10}>USER1</option>
-                                <option value={20}>User2</option>
-                            </NativeSelect>
-                        </Grid>
+                        <a href='#'><img src={logo} id="logo" /></a>
                     </li>
                     <li li id='navright'>
                         <Badge badgeContent={4} color="primary">
@@ -78,71 +70,72 @@ const Header = () => {
                         </Badge>
                     </li>
                     <li id='navright'>
-                        <a href='#'><img src={logo} id="logo" /></a>
+                        <Grid container>
+                            <InputLabel id="demo-simple-select-helper-label">
+                                <AccountCircleIcon color="action" fontSize='large' />
+                            </InputLabel>
+                            <ArrowDropDownIcon color="action" fontSize='large' />
+                        </Grid>
                     </li>
                 </ul>
             </div>
 
             {/* Second Part */}
             <Grid container mt={2} mb={2}>
-                <Typography variant='h6' sx={{ margin: "0px 20px" }}>Admin</Typography>
-                <ArrowForwardIcon color="action" fontSize='large' />
-                <Typography variant="h5" sx={{ marginLeft: "20px", color: "blue" }}>PendingOrders</Typography>
+                <Typography variant='h6' sx={{ margin: "0px 20px" }} id="secondPart" >Admin</Typography>
+                <ArrowForwardIcon color="action" fontSize='large'/>
+                <Typography variant="h5" sx={{color: "blue"}} id="secondPart">PendingOrders</Typography>
             </Grid>
             <Grid container>
-                <Typography variant="h3">Pending Orders</Typography>
+                <Typography variant="h3" id="secondPart">Pending Orders</Typography>
             </Grid>
 
 
 
-            {/* Third part Cards*/}
-            <Grid container m={1}>
+            {/* Third part:Cards Block*/}
+            <Grid container id="cards">
                 {/* Let's Intialize x and y values before developing graph */}
 
-                <CardContent
-                    sx={{ border: "1px solid white", width: "48%", backgroundColor: "snow" }} m={1}
+                <CardContent id="card1"
+                    m={1}
                 >
                     {APIdata ?
                         <Grid>
-                            <Grid sx={{ float: 'right', padding: "5px" }}>
+                            <Grid id="graph">
                                 <RemoveRedEyeIcon color="action" fontSize='large' />
                                 <VisibilityOffIcon color="action" fontSize='large' />
                                 <ChangeCircleIcon color="action" fontSize='large' />
-                                <span style={{ fontWeight: "bold" }}><button>HIstogram</button></span>
+                                <span style={{fontWeight: "bold"}}><button>HIstogram</button></span>
                             </Grid>
                             <Plot
                                 id="plot"
                                 data={[{ x: X, y: Y, type: "bar", orientation: 'h', autosize: "false" }]}
-                                layout={{
-                                    width: 600, height: 900,
-                                    margin: { l: 104, r: 0, t: 0, b: 0 }
-                                }}
-
+                                 layout={{
+                                    height: 900,width:600,
+                                    margin: {l: 110, r: 0, t: 0, b: 0 }
+                                 }}
+                                 
                             />
                         </Grid> : ""}</CardContent>
 
 
                 {/* Second Card */}
-                <CardContent 
-                    sx={{ border: "1px solid white", position:"relative",width: "48%", backgroundColor: "snow",marginLeft:"5px"
-                    }}>
+                <CardContent id="card2">
 
-                   <Grid mt={10}>
+                   <Grid id="card2Margin">
                      {/* Card2 First PArt Date And Time */}
-                     <Grid sx={{ margin: "auto" }} m={3}>
-                        <TextField id="date" label="StartDate" type="date" InputLabelProps={{ shrink: true }}
-                            sx={{ width: "49%", backgroundColor: "aliceblue", marginRight: "2px" }} />
-                        <TextField id="date" label="EndDate" type="date" InputLabelProps={{ shrink: true }}
-                            sx={{ width: "49%", backgroundColor: "aliceblue" }} />
+                     <Grid m={1}>
+                        <TextField className="date1" label="StartDate" type="date" InputLabelProps={{ shrink: true }} />
+                        <TextField className="date1" label="EndDate" type="date" InputLabelProps={{ shrink: true }} />
                     </Grid>
 
                     {/* card2 SEcond part */}
                     <Grid container>
-                        <Grid m={3}>
+                        <Grid m={2} className="card2Text">
                             <Typography variant='h4'>Pending Orders</Typography>
                             <Typography variant='h5'>90</Typography>
                         </Grid>
-                        <Grid m={3}>
+                        <Grid m={2} className="card2Text">
                             <Typography variant='h4'>Revenue On Hold</Typography>
                             <Typography variant='h5'>$3000</Typography>
                         </Grid>
@@ -150,7 +143,7 @@ const Header = () => {
 
                     {/* card 2 Third Part */}
                     <Grid container m={1}>
-                        <Grid sx={{ border: "1px solid black" }} m={1}>
+                        <Grid className='card2subcards' m={1}>
                             <Typography variant='h5'>In House Preprocessing</Typography>
                             <hr />
                             <Grid container mt={1}>
@@ -169,11 +162,11 @@ const Header = () => {
                             </Grid>
                             <hr />
                             <Grid>
-                                <a style={{ color: "blue" }}>View Details</a>
+                                <a style={{color:"blue"}}>View Details</a>
                             </Grid>
                         </Grid>
 
-                        <Grid sx={{ border: "1px solid black" }} m={1}>
+                        <Grid className='card2subcards' m={1}>
                             <Typography variant='h5'>Pending Signatures</Typography>
                             <hr />
                             <Grid container mt={1}>
@@ -200,21 +193,21 @@ const Header = () => {
 
                     {/* card2 Fourth Part */}
                     <Grid container m={1}>
-                        <Grid sx={{ border: "1px solid black" }} m={1}>
-                            <Typography variant='h5'>In House Preprocessing</Typography>
+                        <Grid className='card2subcards' m={1}>
+                            <Typography variant='h5'>To Be Sent</Typography>
                             <hr />
                             <Grid container mt={1}>
                                 <Grid m={1}>
                                     <Typography variant='h6' >Orders</Typography>
-                                    <Typography variant='body'>10</Typography>
+                                    <Typography variant='body'>20</Typography>
                                 </Grid>
                                 <Grid m={1}>
                                     <Typography variant='h6' >Episodes</Typography>
-                                    <Typography variant='body'>10</Typography>
+                                    <Typography variant='body'>30</Typography>
                                 </Grid>
                                 <Grid m={1}>
                                     <Typography variant='h6' >Revenue</Typography>
-                                    <Typography variant='body'>$1000</Typography>
+                                    <Typography variant='body'>$5000</Typography>
                                 </Grid>
                             </Grid>
                             <hr />
@@ -223,21 +216,21 @@ const Header = () => {
                             </Grid>
                         </Grid>
 
-                        <Grid sx={{ border: "1px solid black" }} m={1}>
-                            <Typography variant='h5'>Pending Signatures</Typography>
+                        <Grid className='card2subcards' m={1}>
+                            <Typography variant='h5'>Recieved Orders</Typography>
                             <hr />
                             <Grid container mt={1}>
                                 <Grid m={1}>
                                     <Typography variant='h6' >Orders</Typography>
-                                    <Typography variant='body'>10</Typography>
+                                    <Typography variant='body'>18</Typography>
                                 </Grid>
                                 <Grid m={1}>
                                     <Typography variant='h6' >Episodes</Typography>
-                                    <Typography variant='body'>10</Typography>
+                                    <Typography variant='body'>21</Typography>
                                 </Grid>
                                 <Grid m={1}>
                                     <Typography variant='h6' >Revenue</Typography>
-                                    <Typography variant='body'>$1000</Typography>
+                                    <Typography variant='body'>$8000</Typography>
                                 </Grid>
                             </Grid>
                             <hr />
