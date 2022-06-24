@@ -19,10 +19,12 @@ import TextField from '@mui/material/TextField'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 const Header = () => {
+
+    // Declaring a Value to Store API Data
     let [APIdata, setData] = useState(null)
-    //To Store x values of graph
+
+    //Intializing X and Y values to use them as x-axis and y-axis for Graph
     let X = []
-    //To Store y values of graph
     let Y = []
     if (APIdata) {
         for (var a in APIdata) {
@@ -31,17 +33,31 @@ const Header = () => {
         }
     }
 
+    // This is the value  is going to be used in Graph <plot>-layout-width and we use innerWidth of browser to change layout width value for Responsive Websites
+    const [mediaWidth, setmediaWidth] = useState(window.innerWidth)
+
+    //defaultLayOutWidth starting takes 600 width which is suitable for default responsive desktop page
+    let defaultLayOutWidth = 600
+    
     useEffect(() => {
+        //Getting the Data from API using Axios
         const fetchData = async () => {
-            let data1 = await axios.get("https://5b9f8640f5036f00142e4a2c.mockapi.io/v1/users-count").
+            const data1 = await axios.get("https://5b9f8640f5036f00142e4a2c.mockapi.io/v1/users-count").
                 then((response) => { setData(response.data) }).catch((err) => { console.log(err.message) })
         }
         fetchData()
+
+        //Here we use this function to catch the change in media-width and we will store that value in the mediaWidth state.
+        function handlemediaWidth(){
+            setmediaWidth(window.innerWidth)
+        }
+        window.addEventListener("resize",handlemediaWidth)
     }, [])
 
     return (
+
         <Grid id="container" container>
-            {/*NavBar1*/}
+            {/* NAVBAR */}
             <div id="nav">
                 <ul>
                     <li><a href='#'><img src={logo1} id="logo1" /></a></li>
@@ -61,6 +77,8 @@ const Header = () => {
                             <option value="1">Client</option>
                         </select>
                     </li>
+
+                    {/* Making to float few li's to Right Side */}
                     <li id='navright'>
                         <a href='#'><img src={logo} id="logo" /></a>
                     </li>
@@ -80,9 +98,9 @@ const Header = () => {
                 </ul>
             </div>
 
-            {/* Second Part */}
+            {/* second part after Navbar */}
             <Grid container mt={2} mb={2}>
-                <Typography variant='h6' sx={{ margin: "0px 20px" }} id="secondPart" >Admin</Typography>
+                <Typography variant='h6' sx={{ margin: "0px 10px" }} id="secondPart" >Admin</Typography>
                 <ArrowForwardIcon color="action" fontSize='large'/>
                 <Typography variant="h5" sx={{color: "blue"}} id="secondPart">PendingOrders</Typography>
             </Grid>
@@ -90,15 +108,17 @@ const Header = () => {
                 <Typography variant="h3" id="secondPart">Pending Orders</Typography>
             </Grid>
 
+            {/* Before Working with Graphs we will take the present mediaWidth value and based on the mediawidth 
+            we'll change our defaultLatOutWidth and we'll store it in <Plot>-layout width for responsive Page*/}
+            {
+                (console.log(mediaWidth),mediaWidth<700 ? defaultLayOutWidth = 300 : defaultLayOutWidth=600)
+            }
 
-
-            {/* Third part:Cards Block*/}
+            {/* Third part of Task : Cards Block*/}
             <Grid container id="cards">
-                {/* Let's Intialize x and y values before developing graph */}
 
-                <CardContent id="card1"
-                    m={1}
-                >
+                {/* FirstCard which contains Grap */}
+                <CardContent id="card1">
                     {APIdata ?
                         <Grid>
                             <Grid id="graph">
@@ -111,51 +131,51 @@ const Header = () => {
                                 id="plot"
                                 data={[{ x: X, y: Y, type: "bar", orientation: 'h', autosize: "false" }]}
                                  layout={{
-                                    height: 900,width:600,
+                                    height: 900,width:defaultLayOutWidth,
                                     margin: {l: 110, r: 0, t: 0, b: 0 }
-                                 }}
-                                 
+                                 }}   
                             />
                         </Grid> : ""}</CardContent>
 
 
-                {/* Second Card */}
+
+                {/* Second Card which contains Some data*/}
                 <CardContent id="card2">
 
                    <Grid id="card2Margin">
-                     {/* Card2 First PArt Date And Time */}
-                     <Grid m={1}>
+                     {/* Card2 First Part Date And Time */}
+                     <Grid>
                         <TextField className="date1" label="StartDate" type="date" InputLabelProps={{ shrink: true }} />
                         <TextField className="date1" label="EndDate" type="date" InputLabelProps={{ shrink: true }} />
                     </Grid>
 
-                    {/* card2 SEcond part */}
+                    {/* card2 Second part */}
                     <Grid container>
-                        <Grid m={2} className="card2Text">
+                        <Grid  className="card2Text">
                             <Typography variant='h4'>Pending Orders</Typography>
                             <Typography variant='h5'>90</Typography>
                         </Grid>
-                        <Grid m={2} className="card2Text">
+                        <Grid className="card2Text">
                             <Typography variant='h4'>Revenue On Hold</Typography>
                             <Typography variant='h5'>$3000</Typography>
                         </Grid>
                     </Grid>
 
                     {/* card 2 Third Part */}
-                    <Grid container m={1}>
-                        <Grid className='card2subcards' m={1}>
+                    <Grid container className="card2SubcardsMain">
+                        <Grid className='card2subcards'>
                             <Typography variant='h5'>In House Preprocessing</Typography>
                             <hr />
                             <Grid container mt={1}>
-                                <Grid m={1}>
+                                <Grid className='card2subcardstext'>
                                     <Typography variant='h6' >Orders</Typography>
                                     <Typography variant='body'>10</Typography>
                                 </Grid>
-                                <Grid m={1}>
+                                <Grid className='card2subcardstext'>
                                     <Typography variant='h6' >Episodes</Typography>
                                     <Typography variant='body'>10</Typography>
                                 </Grid>
-                                <Grid m={1}>
+                                <Grid className='card2subcardstext'>
                                     <Typography variant='h6' >Revenue</Typography>
                                     <Typography variant='body'>$1000</Typography>
                                 </Grid>
@@ -166,19 +186,19 @@ const Header = () => {
                             </Grid>
                         </Grid>
 
-                        <Grid className='card2subcards' m={1}>
+                        <Grid className='card2subcards'>
                             <Typography variant='h5'>Pending Signatures</Typography>
                             <hr />
                             <Grid container mt={1}>
-                                <Grid m={1}>
+                                <Grid className='card2subcardstext'>
                                     <Typography variant='h6' >Orders</Typography>
                                     <Typography variant='body'>10</Typography>
                                 </Grid>
-                                <Grid m={1}>
+                                <Grid className='card2subcardstext'>
                                     <Typography variant='h6' >Episodes</Typography>
                                     <Typography variant='body'>10</Typography>
                                 </Grid>
-                                <Grid m={1}>
+                                <Grid className='card2subcardstext'>
                                     <Typography variant='h6' >Revenue</Typography>
                                     <Typography variant='body'>$1000</Typography>
                                 </Grid>
@@ -192,20 +212,20 @@ const Header = () => {
 
 
                     {/* card2 Fourth Part */}
-                    <Grid container m={1}>
-                        <Grid className='card2subcards' m={1}>
+                    <Grid container className="card2SubcardsMain">
+                        <Grid className='card2subcards'>
                             <Typography variant='h5'>To Be Sent</Typography>
                             <hr />
                             <Grid container mt={1}>
-                                <Grid m={1}>
+                                <Grid className='card2subcardstext'>
                                     <Typography variant='h6' >Orders</Typography>
                                     <Typography variant='body'>20</Typography>
                                 </Grid>
-                                <Grid m={1}>
+                                <Grid className='card2subcardstext'>
                                     <Typography variant='h6' >Episodes</Typography>
                                     <Typography variant='body'>30</Typography>
                                 </Grid>
-                                <Grid m={1}>
+                                <Grid className='card2subcardstext'>
                                     <Typography variant='h6' >Revenue</Typography>
                                     <Typography variant='body'>$5000</Typography>
                                 </Grid>
@@ -216,19 +236,19 @@ const Header = () => {
                             </Grid>
                         </Grid>
 
-                        <Grid className='card2subcards' m={1}>
+                        <Grid className='card2subcards'>
                             <Typography variant='h5'>Recieved Orders</Typography>
                             <hr />
                             <Grid container mt={1}>
-                                <Grid m={1}>
+                                <Grid className='card2subcardstext'>
                                     <Typography variant='h6' >Orders</Typography>
                                     <Typography variant='body'>18</Typography>
                                 </Grid>
-                                <Grid m={1}>
+                                <Grid className='card2subcardstext'>
                                     <Typography variant='h6' >Episodes</Typography>
                                     <Typography variant='body'>21</Typography>
                                 </Grid>
-                                <Grid m={1}>
+                                <Grid className='card2subcardstext'>
                                     <Typography variant='h6' >Revenue</Typography>
                                     <Typography variant='body'>$8000</Typography>
                                 </Grid>

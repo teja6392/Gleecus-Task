@@ -12,8 +12,11 @@ code {
     monospace;
 }
 
+:root{
+  --layout-width:600px;
+}
 
-/* Nav BAR-1 Styles */
+/* Default Styles For DeskTop */
 #container{
   width: 100%;
   height: 100%;
@@ -21,6 +24,11 @@ code {
   padding: 10px 0px;
   display: block;
   float: left;
+}
+
+#nav{
+  padding-left: 50px;
+  box-sizing: border-box;
 }
 
 ul{ 
@@ -36,7 +44,7 @@ ul{
 li{
   float: left;
   padding: 5px;
-  margin: 0px 15px;
+  margin: 0px 0px;
 }
 
 .textLi{
@@ -70,7 +78,7 @@ select{
 }
 
 #secondPart{
-  padding:5px 0px 10px 30px;
+  padding:5px 0px 10px 40px;
   box-sizing: border-box;
 }
 
@@ -80,6 +88,7 @@ select{
   box-sizing:border-box;
 }
 #card1{
+  margin:8px;
   width:48%;
   background-color: snow;
   border: 1px solid white;
@@ -90,40 +99,57 @@ select{
   border: 1px solid white;
   position:relative;
   margin-left:5px;  
+  margin-top: 8px;
 }
 #card2Margin{
-  margin-top:150px;
+  margin-top:70px;
 }
+
 .date1{
   width: 49% ;
   background-color: aliceblue ;
   margin-right: 2px;
-  margin-left:2px
+  margin-left:2px;
+  padding:8px
 }
+
+.card2Text{
+  margin:16px
+}
+
 .card2subcards{
+  margin: 8px;
   border:1px solid black;
 }
+.card2subcardstext{
+  margin: 8px;
+}
+
 #graph{ 
   float: right;
    padding: 5px;
   }
 
-  @media screen and (max-width: 376px){
-    #container,#nav,ul,select{
+  @media screen and (max-width: 390px){
+    #container,#nav,ul,select,li{
       width: 100%;
       float: none;
       margin:0px 0px;
+      margin-right: 0px;
       text-align: center;
+      padding: 0px;
     }
-    li{
-      width:95%;
-      text-align: center;
+    #nav{
+      padding-top: 15px;
+      box-sizing: border-box;
     }
     
     #navright{
       width: 30%;
       float: left;
-      margin-left:10px
+      margin-left:10px;
+      padding-bottom: 15px;
+      box-sizing: border-box;
     }
     #logo{
       margin-left: 30px;
@@ -134,34 +160,105 @@ select{
       padding: 0px;
     }
     #card1{
-      width:70% !important;
-      margin:0px !important;
+      width:100%;
+      margin:0px ;
       padding:0px
     }
     #card2{
-      width:70%;
-      padding: 0px;
+      width:100%;
+      text-align: center;
+      margin-left: 15px;
     }
     #card2Margin{
-      margin-top: 10px !important;
+      margin-top: 10px ;
     }
     .card2Text{
-      margin: 0px !important;
+      margin: 0px ;
       padding: 0px;
     }
     .card2subcards{
-      margin : 0px !important;
-      padding: 0px !important;
+      margin : 0px ;
+      padding: 0px ;
     }
     .date1{
       float:left;
-      width: 80%;
+      width: 100%;
       margin: 0px;
       padding: 0px;
       margin-bottom:8px;
     }
   }
 
+
+  @media screen and (min-width: 391px) and (max-width:500px){
+    #container,#nav,ul,select,li{
+      width: 100%;
+      float: none;
+      margin:0px 0px;
+      margin-right: 0px;
+      text-align: center;
+      padding: 0px;
+    }
+    
+  
+    
+    #nav{
+      padding-top: 15px;
+      box-sizing: border-box;
+    }
+    
+    #navright{
+      width: 30%;
+      float: left;
+      margin-left:13px;
+      padding-bottom: 15px;
+      box-sizing: border-box;
+    }
+    #logo{
+      margin-left: 30px;
+    }
+    #cards{
+      width:100%;
+      height:900px;
+      padding: 0px;
+    }
+    #card1{
+      width:100%;
+      margin:0px ;
+      padding:0px
+    }
+    #card2{
+      width:100%;
+      text-align: center;
+      margin-left: 15px;
+    }
+    #card2Margin{
+      margin-top: 10px ;
+    }
+    .card2Text{
+      margin: 0px ;
+      padding: 0px;
+      padding-left: 20px;
+      box-sizing: border-box;
+    }
+    .card2SubcardsMain{
+      padding-left: 40px;
+      box-sizing: border-box;
+    }
+    .card2subcards{
+      margin : 0px ;
+      padding: 0px ;
+      margin-bottom: 2px;
+    }
+
+    .date1{
+      float:left;
+      width: 100%;
+      margin: 0px;
+      padding: 0px;
+      margin-bottom:8px;
+    }
+  }
   
 
 
